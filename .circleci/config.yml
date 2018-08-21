@@ -24,7 +24,7 @@ jobs:
     requires:
       - build
     steps:
-    - run: echo "PWD=$PWD" && ls -laR $PWD
+    - run: echo "PWD=$PWD" && ls -laR ~
     - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat .circle_build_job.txt)"
 
 #  "j2":
@@ -48,5 +48,5 @@ workflows:
     jobs:
     - "buildjob"
     - "j1"
-    - "j2"
-    - "j3"
+#    - "j2"
+#    - "j3"
