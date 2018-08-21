@@ -24,7 +24,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: echo "PWD=$PWD" && ls -lR *
+      - run: echo "PWD=$PWD" && ls -lR
       - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
 #  "j2":
