@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/circletest
     steps:
     - checkout
-    - run: set
+    - run: echo $CIRCLE_JOB
 
   "j2":
     machine:
@@ -15,7 +15,7 @@ jobs:
     working_directory: ~/circletest
     steps:
     - checkout
-    - run: set
+    - run: echo $CIRCLE_JOB
 
   "j3":
     machine:
@@ -23,7 +23,7 @@ jobs:
     working_directory: ~/circletest
     steps:
     - checkout
-    - run: set
+    - run: echo $CIRCLE_JOB
 
 workflows:
   version: 2
