@@ -9,23 +9,23 @@ jobs:
     steps:
     - checkout
     - run: echo $CIRCLE_JOB
-    - run: echo $CIRCLE_JOB >.circle_build_job.txt
-    - run: echo "PWD=$PWD" && ls -laR $PWD
-    persist_to_workspace:
-      root: ~/
-      paths: circletest
+    - run: mkdir -p builddir && echo $CIRCLE_JOB >builddir/circle_build_job.txt
+    - run: echo "PWD=$PWD" && ls -lR $PWD
+    - persist_to_workspace:
+        root: ~/
+        paths: circletest
 
   "j1":
     working_directory: ~/circletest
-    attach_workspace:
-      at: ~/
     machine:
       image: circleci/classic:201808-01
     requires:
       - build
     steps:
-    - run: echo "PWD=$PWD" && ls -laR ~
-    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat .circle_build_job.txt)"
+    - attach_workspace:
+      at: ~/
+        - run: echo "PWD=$PWD" && ls -lR *
+    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
 #  "j2":
 #    machine:
