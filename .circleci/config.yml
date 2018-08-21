@@ -25,20 +25,25 @@ jobs:
       - run: echo "PWD=$PWD" && ls -lR
       - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
-#  "j2":
-#    machine:
-#      image: circleci/classic:201808-01
-#    working_directory: ~/circletest
-#    steps:
-#    - run: echo $CIRCLE_JOB
-#
-#  "j3":
-#    machine:
-#      image: circleci/classic:201808-01
-#    working_directory: ~/circletest
-#    steps:
-#    - run: echo $CIRCLE_JOB
+  "j2":
+    working_directory: ~/circletest
+    machine:
+      image: circleci/classic:201808-01
+    steps:
+    - attach_workspace:
+        at: ~/
+    - run: echo "PWD=$PWD" && ls -lR
+    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
+  "j3":
+    working_directory: ~/circletest
+    machine:
+      image: circleci/classic:201808-01
+    steps:
+    - attach_workspace:
+        at: ~/
+    - run: echo "PWD=$PWD" && ls -lR
+    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
 workflows:
   version: 2
@@ -48,5 +53,9 @@ workflows:
     - j1:
         requires:
           - buildjob
-#    - "j2"
-#    - "j3"
+    - j2:
+        requires:
+        - buildjob
+    - j3:
+        requires:
+        - buildjob
