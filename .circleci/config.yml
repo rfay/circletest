@@ -20,7 +20,7 @@ jobs:
     machine:
       image: circleci/classic:201808-01
     requires:
-      - build
+      - buildjob
     steps:
       - attach_workspace:
           at: ~/
