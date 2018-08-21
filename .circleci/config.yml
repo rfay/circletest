@@ -22,10 +22,10 @@ jobs:
     requires:
       - build
     steps:
-    - attach_workspace:
-      at: ~/
-        - run: echo "PWD=$PWD" && ls -lR *
-    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
+      - attach_workspace:
+          at: ~/
+      - run: echo "PWD=$PWD" && ls -lR *
+      - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 
 #  "j2":
 #    machine:
