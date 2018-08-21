@@ -1,20 +1,34 @@
 version: 2.0
 
 jobs:
-  "j1":
+
+  "build":
     machine:
       image: circleci/classic:201808-01
     working_directory: ~/circletest
     steps:
     - checkout
     - run: echo $CIRCLE_JOB
+    - run: echo $CIRCLE_JOB >.circle_build_job.txt
+    persist_to_workspace:
+      root: ~/circletest
+
+  "j1":
+    machine:
+      image: circleci/classic:201808-01
+    working_directory: ~/circletest
+    attach_workspace:
+      at: ~/circletest
+    requires:
+      - build
+    steps:
+      - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat .circle_build_job.txt)"
 
   "j2":
     machine:
       image: circleci/classic:201808-01
     working_directory: ~/circletest
     steps:
-    - checkout
     - run: echo $CIRCLE_JOB
 
   "j3":
@@ -22,12 +36,15 @@ jobs:
       image: circleci/classic:201808-01
     working_directory: ~/circletest
     steps:
-    - checkout
     - run: echo $CIRCLE_JOB
+
 
 workflows:
   version: 2
   build:
+    jobs:
+    - "build"
+  test:
     jobs:
     - "j1"
     - "j2"
