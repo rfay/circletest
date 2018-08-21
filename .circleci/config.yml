@@ -44,9 +44,9 @@ workflows:
   version: 2
   test:
     jobs:
-    - "buildjob"
-    - "j1":
-      requires:
-        - buildjob
+    - buildjob
+    - j1:
+        requires:
+          - buildjob
 #    - "j2"
 #    - "j3"
