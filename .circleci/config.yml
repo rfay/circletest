@@ -10,35 +10,36 @@ jobs:
     - checkout
     - run: echo $CIRCLE_JOB
     - run: echo $CIRCLE_JOB >.circle_build_job.txt
-    - run: ls -la $PWD
+    - run: echo "PWD=$PWD" && ls -laR $PWD
     persist_to_workspace:
-      root: ~/circletest
+      root: ~/
+      paths: circletest
 
   "j1":
-    machine:
-      image: circleci/classic:201808-01
     working_directory: ~/circletest
     attach_workspace:
-      at: ~/circletest
+      at: ~/
+    machine:
+      image: circleci/classic:201808-01
     requires:
       - build
     steps:
-      - run: ls -la $PWD
-      - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat .circle_build_job.txt)"
+    - run: echo "PWD=$PWD" && ls -laR $PWD
+    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat .circle_build_job.txt)"
 
-  "j2":
-    machine:
-      image: circleci/classic:201808-01
-    working_directory: ~/circletest
-    steps:
-    - run: echo $CIRCLE_JOB
-
-  "j3":
-    machine:
-      image: circleci/classic:201808-01
-    working_directory: ~/circletest
-    steps:
-    - run: echo $CIRCLE_JOB
+#  "j2":
+#    machine:
+#      image: circleci/classic:201808-01
+#    working_directory: ~/circletest
+#    steps:
+#    - run: echo $CIRCLE_JOB
+#
+#  "j3":
+#    machine:
+#      image: circleci/classic:201808-01
+#    working_directory: ~/circletest
+#    steps:
+#    - run: echo $CIRCLE_JOB
 
 
 workflows:
