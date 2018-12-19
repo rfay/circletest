@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/circletest
     steps:
     - checkout
-    - run: echo running CIRCLE_JOB=$CIRCLE_JOB  CIRCLE_PULL_REQUEST=$CIRCLE_PULL_REQUEST
+    - run: echo "running CIRCLE_JOB=$CIRCLE_JOB  CIRCLE_PULL_REQUEST=$CIRCLE_PULL_REQUEST"
     - run: mkdir -p builddir && echo $CIRCLE_JOB >builddir/circle_build_job.txt
     - run: echo "PWD=$PWD" && ls -lR $PWD
     - persist_to_workspace:
@@ -35,9 +35,6 @@ workflows:
     triggers:
     - schedule:
         cron: "0,10,20,30,40,50 * * * 1-5"
-        filters:
-          branches:
-            only:
-            - master
+
     jobs:
     - buildjob
