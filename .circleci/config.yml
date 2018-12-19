@@ -37,7 +37,8 @@ workflows:
         cron: "* * * * 3"
         filters:
           branches:
-            ignore:
-              - "develop"
+            only:
+              - "num.*"
+              - master
     jobs:
     - buildjob
