@@ -37,8 +37,7 @@ workflows:
         cron: "* * * * *"
         filters:
           branches:
-            only:
-            - "master"
-            - ".*"
+            ignore:
+            - "nobranchinexistence"
     jobs:
     - buildjob
