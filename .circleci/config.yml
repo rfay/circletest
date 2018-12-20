@@ -34,11 +34,12 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: "* * * * 3"
+        cron: "5,10,15,20,25,30,35,40,45,50,55,0 * * * 3"
         filters:
           branches:
             only:
               - "num.*"
-              - master
+              - "master"
+              - "pull/.*"
     jobs:
     - buildjob
