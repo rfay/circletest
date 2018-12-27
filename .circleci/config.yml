@@ -19,19 +19,19 @@ jobs:
     machine:
       image: circleci/classic:201808-01
     steps:
-      - attach_workspace:
-          at: ~/
-      - run: echo "PWD=$PWD" && ls -lR
-      - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
+    - attach_workspace:
+        at: ~/
+    - run: echo "PWD=$PWD" && ls -lR
+    - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 workflows:
   version: 2
   nightly:
     jobs:
-      - buildjob
+    - buildjob
     triggers:
-      - schedule:
-        cron: "* * * * *"
-        filters:
-          branches:
-            ignore:
-              - "noboooskd"
+    - schedule:
+      cron: "* * * * *"
+      filters:
+        branches:
+          ignore:
+          - "noboooskd"
