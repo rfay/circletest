@@ -34,10 +34,11 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: "0 5 * * *"
+        cron: "* * * * *"
         filters:
           branches:
-            ignore:
-            - "nobranchinexistence"
+            only:
+            - "master"
+            - "refs/heads/pull/.*"
     jobs:
     - buildjob
