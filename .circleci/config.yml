@@ -25,20 +25,13 @@ jobs:
       - run: echo "CIRCLE_JOB=$CIRCLE_JOB and build_job=$(cat builddir/circle_build_job.txt)"
 workflows:
   version: 2
-  test:
-    jobs:
-    - buildjob
-    - j1:
-        requires:
-          - buildjob
   nightly:
+    jobs:
+      - buildjob
     triggers:
-    - schedule:
+      - schedule:
         cron: "* * * * *"
         filters:
           branches:
             ignore:
               - "noboooskd"
-
-    jobs:
-    - buildjob
