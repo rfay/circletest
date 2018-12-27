@@ -39,10 +39,10 @@ workflows:
           branches:
             only:
               - "master"
-              - "/pull.*/"
-              - "/refs.*pull.*/"
+              - /pull.*/
+              - /refs.*pull.*/
               - "20181219_test_nightly"
-              - "/num.*/"
+              - /num.*/
 
     jobs:
     - buildjob
