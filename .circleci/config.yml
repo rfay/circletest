@@ -34,15 +34,13 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: "* 23 * * *"
+        cron: "* * * * *"
         filters:
           branches:
             only:
             - "master"
-            - "pull/.*/head"
-            - "pull/*/head"
-            - "refs/pull/*"
-            - "refs/pull/.*"
+            - "/pull.*head/"
+            - "/refs.*pull.*/"
             - "20181219_test_nightly"
 
     jobs:
