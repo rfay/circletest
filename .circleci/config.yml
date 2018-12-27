@@ -36,10 +36,11 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: "*/10 * * * 1-5"
+        cron: "* * * * 1-5"
         filters:
           branches:
             only:
             - master
+            - refs/heads/pull/.*
     jobs:
     - buildjob
