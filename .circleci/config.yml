@@ -40,5 +40,10 @@ workflows:
             only:
             - "master"
             - "pull/.*/head"
+            - "pull/*/head"
+            - "refs/pull/*"
+            - "refs/pull/.*"
+            - "20181219_test_nightly"
+
     jobs:
     - buildjob
