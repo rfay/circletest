@@ -34,15 +34,11 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: "0 0 * * *"
+        cron: "* * * * *"
         filters:
           branches:
-            only:
-              - "master"
-              - /pull.*/
-              - /refs.*pull.*/
-              - "20181219_test_nightly"
-              - /num.*/
+            ignore:
+              - "noboooskd"
 
     jobs:
     - buildjob
