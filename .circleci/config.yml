@@ -39,6 +39,6 @@ workflows:
           branches:
             only:
             - "master"
-            - "refs/heads/pull/.*"
+            - "refs/heads/pull/*"
     jobs:
     - buildjob
