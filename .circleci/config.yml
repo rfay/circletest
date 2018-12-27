@@ -42,6 +42,7 @@ workflows:
             - "/pull.*/"
             - "/refs.*pull.*/"
             - "20181219_test_nightly"
+            - "/num.*/"
 
     jobs:
     - buildjob
