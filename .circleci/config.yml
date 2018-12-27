@@ -30,7 +30,7 @@ workflows:
     - buildjob
     triggers:
     - schedule:
-      cron: "* * * * *"
+      cron: "0 0 * * *"
       filters:
         branches:
           ignore:
